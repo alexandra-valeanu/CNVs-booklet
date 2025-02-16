@@ -1,0 +1,10 @@
+# main links
+main:
+  - title: "About"
+    url: /1_about/
+  - title: "Documentation"
+    url: /2_documentation/
+  - title: "Publications"
+    url: /3_publications/
+  - title: "Contact"
+    url: /4_contact/
