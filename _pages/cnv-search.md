@@ -36,13 +36,13 @@ permalink: /cnv-search/
     <thead>
         <tr>
         <th>CNV</th>
-        <th>CNV Type</th>
         <th>Known Name</th>
         <th>Locus</th>
         <th>Chromosome</th>
         <th>Start</th>
         <th>End</th>
         <th>Genes</th>
+        <!-- <th>Critical region genes</th> -->
         <th>Associated Diseases</th>
         <th>WikiPathways ID</th>
         </tr>
@@ -50,32 +50,36 @@ permalink: /cnv-search/
     <tbody> 
         <tr>
             <td><a href="/22q11-2/">22q11.21</a></td>
-            <td>Deletion</td>
-            <td>DiGeorge syndrome</td>
+            <td>DiGeorge syndrome (deletion)</td>
             <td>22q11.21</td>
             <td>22</td>
             <td>18912231</td>
             <td>21465672</td>
             <td>PRODH, DGCR2, ESS2, TSSK2, GSC2, SLC25A1, CLTCL1, HIRA, MRPL40, C22orf39, UFD1, CDC45, CLDN5, SEPTIN5, GP1BB, TBX1, GNB1L, RTL10, TXNRD2, COMT, ARVCF, TANGO2, DGCR8, TRMT2A, RANBP1, ZDHHC8, RTN4R, DGCR6L, GGTLC3, RIMBP3, FAM230A, USP41P, ZNF74, SCARF2, KLHL22, MED15, PI4KA, SERPIND1, SNAP29, CRKL, AIFM3, LZTR1, THAP7, P2RX6, SLC7A4, LRRC74B</td>
-            <td>Heart defects, Schizophrenia</td>
+            <td>Heart defects, Schizophrenia, Autism, and more to be added</td>
             <td><a href="https://www.wikipathways.org/instance/WP4657">WP4657</a></td>
         </tr>
         <tr>
-            <td>CNV002</td>
+            <td><a href="/16p13-11/">16p13.11</a></td>
+            <td>Unknown</td>
+            <td>16p13.11</td>
             <td>16</td>
-            <td>29500000</td>
-            <td>30100000</td>
-            <td>Autism, Schizophrenia</td>
-            <td>WP000002</td>
+            <td>15511655</td>
+            <td>16293689</td>
+            <td>BMERB1, MARF1, NDE1, MYH11, CEP20, ABCC1, ABCC6</td>
+            <td>Schizophrenia, Autism, Epilepsy, and more to be added</td>
+            <td><a href="https://www.wikipathways.org/pathways/WP5502.html">WP5502</a></td>
         </tr>
         <tr>
-            <td>CNV003</td>
-            <td>DISC1</td>
-            <td>1</td>
-            <td>230000000</td>
-            <td>231000000</td>
-            <td>Schizophrenia</td>
-            <td>WP000003</td>
+            <td>CNV0003</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
+            <td>...</td>
         </tr>
     </tbody>
 </table>
@@ -92,39 +96,34 @@ $(document).ready(function () {
         "ordering": true
     });
 
-    // Custom filtering for Genes (handles multiple genes in one row)
     $('#gene-filter').on('keyup', function () {
         var searchTerm = this.value.toLowerCase();
+        var searchTerms = searchTerm.split(/\s*,\s*/);  // Split by comma to handle multiple terms
 
-        table.column(1).search('', false, false).draw(); // Reset search
+        if (searchTerm === '') {
+            // Reset the custom filter when input is empty
+            table.rows().every(function () {
+                $(this.node()).show(); 
+            });
+            table.search('').draw(); 
+            return;
+        }
 
+        table.column(6).search('', false, false).draw();
         table.rows().every(function () {
             var rowData = this.data();
-            var genes = rowData[1].toLowerCase().split(/\s*,\s*/); // Split genes by comma and space
-            if (genes.some(gene => gene.includes(searchTerm))) {
-                this.node().style.display = "";
+            var genes = rowData[6].toLowerCase().split(/\s*,\s*/); 
+
+            if (searchTerms.every(term => genes.some(gene => gene.toLowerCase() === term))) {
+                $(this.node()).show(); // Show matching row
             } else {
-                this.node().style.display = "none";
+                $(this.node()).hide();
             }
         });
     });
 
-    // Custom filtering for Phenotypes (handles multiple phenotypes in one row)
     $('#phenotype-filter').on('keyup', function () {
-        var searchTerm = this.value.toLowerCase();
-
-        table.column(5).search('', false, false).draw(); // Reset search
-
-        table.rows().every(function () {
-            var rowData = this.data();
-            var phenotypes = rowData[5].toLowerCase().split(/\s*,\s*/); // Split phenotypes by comma and space
-            if (phenotypes.some(phenotype => phenotype.includes(searchTerm))) {
-                this.node().style.display = "";
-            } else {
-                this.node().style.display = "none";
-            }
-        });
+        table.column(7).search(this.value, true, false).draw();
     });
 });
-
 </script>
