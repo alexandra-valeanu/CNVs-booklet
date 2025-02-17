@@ -23,32 +23,45 @@ permalink: /cnv-search/
 <label>Filter by Gene: <input type="text" id="gene-filter" placeholder="Enter gene name"></label>
 <label>Filter by Phenotype: <input type="text" id="phenotype-filter" placeholder="Enter phenotype"></label>
 
+<style>
+    #cnv-table th, 
+    #cnv-table td {
+        text-align: left;
+        vertical-align: middle;
+    }
+</style>
+
 <!-- CNV Table -->
 <table id="cnv-table" class="display">
     <thead>
         <tr>
-            <th>CNV ID</th>
-            <th>Gene</th>
-            <th>Chromosome</th>
-            <th>Start</th>
-            <th>End</th>
-            <th>Phenotype</th>
-            <th>WikiPathways ID</th>
+        <th>CNV</th>
+        <th>CNV Type</th>
+        <th>Known Name</th>
+        <th>Locus</th>
+        <th>Chromosome</th>
+        <th>Start</th>
+        <th>End</th>
+        <th>Genes</th>
+        <th>Associated Diseases</th>
+        <th>WikiPathways ID</th>
         </tr>
     </thead>
     <tbody> 
         <tr>
-            <td><a href="/22q11-2/">CNV001</a></td>
-            <td>NRXN1</td>
-            <td>2</td>
-            <td>50000000</td>
-            <td>51000000</td>
-            <td>Schizophrenia</td>
+            <td><a href="/22q11-2/">22q11.21</a></td>
+            <td>Deletion</td>
+            <td>DiGeorge syndrome</td>
+            <td>22q11.21</td>
+            <td>22</td>
+            <td>18912231</td>
+            <td>21465672</td>
+            <td>PRODH, DGCR2, ESS2, TSSK2, GSC2, SLC25A1, CLTCL1, HIRA, MRPL40, C22orf39, UFD1, CDC45, CLDN5, SEPTIN5, GP1BB, TBX1, GNB1L, RTL10, TXNRD2, COMT, ARVCF, TANGO2, DGCR8, TRMT2A, RANBP1, ZDHHC8, RTN4R, DGCR6L, GGTLC3, RIMBP3, FAM230A, USP41P, ZNF74, SCARF2, KLHL22, MED15, PI4KA, SERPIND1, SNAP29, CRKL, AIFM3, LZTR1, THAP7, P2RX6, SLC7A4, LRRC74B</td>
+            <td>Heart defects, Schizophrenia</td>
             <td><a href="https://www.wikipathways.org/instance/WP4657">WP4657</a></td>
         </tr>
         <tr>
             <td>CNV002</td>
-            <td>NDE1, MHY11</td>
             <td>16</td>
             <td>29500000</td>
             <td>30100000</td>
