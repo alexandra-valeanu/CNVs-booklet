@@ -6,7 +6,7 @@ toc: true
 {% include head.html %}
 
 <head>
-    <!-- Link to teh table styling file  -->
+    <!-- Link to the table styling file -->
     <link rel="stylesheet" href="{{ '/assets/css/cnvs-table-style.scss' | relative_url }}">
 
     <!-- jQuery (must be loaded first) -->
@@ -16,8 +16,11 @@ toc: true
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
 
     <!-- DataTable JS -->
-    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script defer src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+    <script src="{{ '/assets/js/cnvs-table-filter.js' | relative_url }}"></script>
 </head>
+
 
 <style>
     /* Page Layout */
@@ -26,7 +29,7 @@ toc: true
         flex-direction: column;
     }
 
-    /* Sidebar */
+    /* Left sidebar */ 
     .sidebar {
         width: 250px;
         padding: 20px;
@@ -48,11 +51,6 @@ toc: true
         flex-direction: column;
     }
 
-    
-    #cnvs-table-filter label {
-        margin-right: 10px;
-    }
-
     /* References Styling */
     h3 {
         margin-top: 20px;
@@ -64,25 +62,17 @@ toc: true
     }
 </style>
 
+
 <div class="page-content">
-    <!-- Sidebar -->
     <aside class="sidebar">
         {{ page.sidebar | markdownify }}
     </aside>
 
-    <!-- Main Content -->
     <div class="content-wrapper">
         <h1>{{ page.title }}</h1>
 
-        <!-- Dynamic Filter Section -->
-        <div id="cnvs-table-filter"></div>
-
-        <!-- Table Container -->
         <div class="table-container">
             {{ content }}
         </div>
     </div>
 </div>
-
-<!-- Include the external filtering script -->
-<script src="{{ '/assets/js/cnvs-table-filter.js' | relative_url }}"></script>
