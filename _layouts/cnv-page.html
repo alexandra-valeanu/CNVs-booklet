@@ -1,0 +1,78 @@
+---
+layout: default
+toc: true
+---
+
+{% include head.html %}
+
+<head>
+    <!-- Link to the table styling file -->
+    <link rel="stylesheet" href="{{ '/assets/css/gene-info-table-style.scss' | relative_url }}">
+
+    <!-- jQuery (must be loaded first) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- DataTable CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+
+    <!-- DataTable JS -->
+    <script defer src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+    <!-- <script src="{{ '/assets/js/gene-table-filter.js' | relative_url }}"></script> -->
+</head>
+
+
+<style>
+    /* Page Layout */
+    .page-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Left sidebar */ 
+    .sidebar {
+        width: 250px;
+        padding: 20px;
+        background: #f4f4f4;
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+        overflow-y: auto;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    }
+
+    /* Main Content */
+    .content-wrapper {
+        margin-left: 260px;
+        padding: 20px;
+        width: calc(100% - 260px);
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* References Styling */
+    h3 {
+        margin-top: 20px;
+    }
+
+    ul {
+        list-style: none;
+        padding-left: 20px;
+    }
+</style>
+
+
+<div class="page-content">
+    <aside class="sidebar">
+        {{ page.sidebar | markdownify }}
+    </aside>
+
+    <div class="content-wrapper">
+        <h1>{{ page.title }}</h1>
+
+        <div class="table-container">
+            {{ content }}
+        </div>
+    </div>
+</div>

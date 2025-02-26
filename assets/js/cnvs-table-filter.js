@@ -21,5 +21,5 @@ document.addEventListener("DOMContentLoaded", function () {
    
 });
 
-// TODO: add custom filter - be able od dinamically filter the table by any column and consider multiple inputs form different rows.
+// TODO: add custom filter - be able to filter the table by any column and consider multiple inputs form different rows.
 
