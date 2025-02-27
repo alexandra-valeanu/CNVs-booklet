@@ -1,5 +1,5 @@
 ---
-permalink: /4_contact/
+permalink: /4-contact/
 title: "Contact us"
 ---
 

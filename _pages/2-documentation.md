@@ -1,5 +1,5 @@
 ---
-permalink: /2_documentation/
+permalink: /2-documentation/
 title: "Documentation"
 toc: true
 toc_label: "Table of Contents"
