@@ -12,18 +12,18 @@ export async function displayGeneLinks(geneSymbols) {
 
         if (geneData) {
             const hgncId = geneData.hgnc_id || 'No ID';
+            const geneName = geneData.name || 'No name available';
             const ncbiId = geneData.entrez_id || 'No ID';
             const ensemblId = geneData.ensembl_gene_id || 'No ID';  
             const uniprotId = geneData.uniprot_ids ? geneData.uniprot_ids[0] : 'No ID';
             const omimId = geneData.omim_id || 'No ID';
-            const description = geneData.name || 'No description available';
 
             row.innerHTML = `
                 <td><a href="https://www.genenames.org/data/gene-symbol-report/#!/hgnc_id/${hgncId}" target="_blank">${symbol}</a></td>
+                <td>${geneName}</td>
                 <td><a href="https://www.ncbi.nlm.nih.gov/gene/${ncbiId}" target="_blank">${ncbiId}</a></td>
                 <td><a href="https://www.ensembl.org/Homo_sapiens/Gene/Summary?g=${ensemblId}" target="_blank">${ensemblId}</a></td>
                 <td><a href="https://www.uniprot.org/uniprotkb/${uniprotId}" target="_blank">${uniprotId}</a></td>
-                <td>${description}</td>
                 <td><a href="https://omim.org/entry/${omimId}" target="_blank">${omimId}</a></td>
             `;
         } else {
